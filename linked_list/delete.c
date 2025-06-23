@@ -1,0 +1,2 @@
+delete(node *current)
+{}
