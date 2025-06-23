@@ -8,6 +8,7 @@ typedef struct Node
 } node;
 
 node *head = NULL;
+node *last = NULL;
 
 void inrt_at_last(int);
 void display();
@@ -25,24 +26,25 @@ int main()
 void inrt_at_last(int data)
 {
     node *newnode = malloc(sizeof(node));
-    if (!newnode)
+    if (!newnode){
         printf("failed to allocate memory .");
-    exit(1);
+        exit(1);
+
+    }
     newnode->data = data;
     newnode->nxt = NULL;
 
     // NOW INSERTING AT LAST :)
-    node *last;
     if (head == NULL)
     {
         head = newnode;
         // last = newnode;
     }
     else
-    {
         last->nxt = newnode;
-        last = newnode;
-    }
+
+    last = newnode;
+    
 }
 
 void display()
