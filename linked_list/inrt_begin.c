@@ -10,8 +10,11 @@ typedef struct Node
 
 node *head = NULL;
 void take_data(int);
+node *makenode(int);
 void display();
 void delete(node *);
+
+
 int main()
 {
     for (int i = 1; i <= 10; i++)
@@ -20,19 +23,13 @@ int main()
     display();
     delete(head);
     display();
+
     return 0;
 }
 
 void take_data(int data)
 {
-    node *newnode = malloc(sizeof(node));
-    if (!newnode)
-    {
-        printf("memory allocation failed");
-        exit(1);
-    }
-    (*newnode).data = data;
-    (*newnode).nxt = NULL;
+    node *newnode = makenode(data);
 
     // NOW I HAVE TO INSERT THIS NODE AT THE BEGGINING
     (*newnode).nxt = head;
@@ -65,4 +62,17 @@ void delete(node *curr) // delete(head)
     free(current); // free the 1st node
 
     delete(address_of_next_node);
+    head = NULL;
+}
+node *makenode(int data)
+{
+    node *newnode = malloc(sizeof (node));
+    if(newnode == NULL)
+    {
+        printf("memory allocation failed");
+        exit(1);
+    }
+        newnode->data = data;
+        newnode->nxt = NULL;
+        return newnode ; 
 }
