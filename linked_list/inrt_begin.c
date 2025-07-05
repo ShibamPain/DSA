@@ -64,6 +64,8 @@ void delete(node *curr) // delete(head)
     delete(address_of_next_node);
     head = NULL;
 }
+//MAKING NEW NODE 
+
 node *makenode(int data)
 {
     node *newnode = malloc(sizeof (node));
