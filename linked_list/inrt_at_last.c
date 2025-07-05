@@ -12,7 +12,7 @@ node *last = NULL;
 
 void inrt_at_last(int);
 void display();
-// void delete();
+void delete(node*);
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
         inrt_at_last(i);
 
     display();
-    // delete();
+    delete(head);
     return 0;
 }
 void inrt_at_last(int data)
@@ -60,4 +60,22 @@ void display()
             temp = temp->nxt;
         }
     }
+}
+// DELETE FROM LAST
+
+void delete(node *head)
+{
+    if(head == NULL)
+        printf("Not possible to delete..");
+    else
+    {
+        node *temp = head;
+        while(temp->nxt->nxt != NULL)
+        {
+            temp = temp->nxt;
+        }
+        free(temp->nxt);
+        temp->nxt = NULL;
+    }
+
 }
