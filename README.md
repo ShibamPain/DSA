@@ -7,5 +7,7 @@
   <li>Sorting</li>
   <li>Recursion</li>
   <li>Linked list</li>
+  <li>Stack</li>
+<hr />
 <hr />
 </ol></p>
