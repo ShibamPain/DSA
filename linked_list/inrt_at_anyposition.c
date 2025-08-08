@@ -1,3 +1,4 @@
+// THIS GIVES SEGMENTATION FAULT IN ONLINE COMPILER BUT IN GCC IT WORK PROPERLY 
 #include<stdio.h>
 #include<stdlib.h>
 
