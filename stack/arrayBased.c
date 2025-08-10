@@ -9,8 +9,7 @@ void push(int value)
         printf("stack overflow...\n");
         return;
     }
-    top++;
-    stack[top] = value;
+    stack[++top] = value;
 }
 void peek()
 {
