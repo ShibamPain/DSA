@@ -1,40 +1,40 @@
-#include<iostream>
+#include <iostream>
 #include <queue>
 using namespace std;
 typedef class Node
 {
-    public:
-        int data;
-        Node *left=nullptr, *right = nullptr;
-        Node(int data)
-            {
-                this->data=data;
-            }
-}node;
+public:
+    int data;
+    Node *left = nullptr, *right = nullptr;
+    Node(int data)
+    {
+        this->data = data;
+    }
+} node;
 
 class BST
 {
-    node *root=nullptr;
-    void insertnode(node *&root,int data)
+    node *root = nullptr;
+    void insertnode(node *&root, int data)
     {
-        if(!root)
+        if (!root)
             root = new node(data);
-        else if(data<root->data)
-            insertnode(root->left,data);
+        else if (data < root->data)
+            insertnode(root->left, data);
         else
-            insertnode(root->right,data);
+            insertnode(root->right, data);
     }
 
-    bool searching(node *root,int data)
+    bool searching(node *root, int data)
     {
-        if(!root)
+        if (!root)
             return false;
-        if(root->data==data)
+        if (root->data == data)
             return true;
-        else if(root->data>data)
-            return searching(root->left,data);
-        else   
-            return searching(root->right,data);        
+        else if (root->data > data)
+            return searching(root->left, data);
+        else
+            return searching(root->right, data);
     }
 
     void BFS(Node *ptr)
@@ -58,34 +58,33 @@ class BST
             if (current->right != nullptr)
                 q.push(current->right);
         }
-
     }
 
-    void preOrder(Node *ptr) //ROOT - LEFT - RIGHT
+    void preOrder(Node *ptr) // ROOT - LEFT - RIGHT
     {
-        if(!ptr)
+        if (!ptr)
             return;
-        cout << ptr->data <<" ";
+        cout << ptr->data << " ";
         preOrder(ptr->left);
         preOrder(ptr->right);
     }
 
-    void inOrder(Node *ptr)  // LEFT - ROOT - RIGHT
+    void inOrder(Node *ptr) // LEFT - ROOT - RIGHT
     {
-        if(!ptr)
+        if (!ptr)
             return;
         inOrder(ptr->left);
-        cout <<ptr->data<<" ";
+        cout << ptr->data << " ";
         inOrder(ptr->right);
     }
 
-    void postOrder(Node *ptr)  // LEFT - RIGHT - ROOT
+    void postOrder(Node *ptr) // LEFT - RIGHT - ROOT
     {
-        if(!ptr)
+        if (!ptr)
             return;
         postOrder(ptr->left);
         postOrder(ptr->right);
-        cout <<ptr->data <<" ";
+        cout << ptr->data << " ";
     }
     int TreeHeight(Node *root)
     {
@@ -97,45 +96,42 @@ class BST
 
         return max(leftHeight, rightHeight) + 1;
     }
-    public:
-        void BFST()
-        {
-            BFS(root);
-            cout<<endl;
-        }
-        void insert(int data)
-        {
-            insertnode(root,data);
-        }
-        bool search(int data)
-        {
-            return searching(root,data);
-            
-        }
-        void preOrderT()
-        {
-            preOrder(root);
-             cout << endl;
 
-        }
-        void inOrderT()
-        {
-            inOrder(root);
-            cout << endl;
-
-        }
-        void postOrderT()
-        {
-            postOrder(root);
-            cout << endl;
-        }
-        int height()
-        {
-            return  TreeHeight(root);
-        }
-
+public:
+    void BFST()
+    {
+        BFS(root);
+        cout << endl;
+    }
+    void insert(int data)
+    {
+        insertnode(root, data);
+    }
+    bool search(int data)
+    {
+        return searching(root, data);
+    }
+    void preOrderT()
+    {
+        preOrder(root);
+        cout << endl;
+    }
+    void inOrderT()
+    {
+        inOrder(root);
+        cout << endl;
+    }
+    void postOrderT()
+    {
+        postOrder(root);
+        cout << endl;
+    }
+    int height()
+    {
+        return TreeHeight(root);
+    }
 };
-using namespace  std;
+using namespace std;
 int main()
 {
     BST b1;
@@ -147,17 +143,17 @@ int main()
     b1.insert(12);
     b1.insert(17);
 
-    cout <<"preorder --" << endl;
+    cout << "preorder --" << endl;
     b1.preOrderT();
-    cout <<"inorder --" << endl;
+    cout << "inorder --" << endl;
     b1.inOrderT();
-    cout <<"postorder --" << endl;
+    cout << "postorder --" << endl;
     b1.postOrderT();
-    cout<<"BFS--"<<endl;
+    cout << "BFS--" << endl;
     b1.BFST();
-    cout<<"searching for 7--"<<endl;
-   cout << b1.search(7)<<endl; // 1 means element is present and 0 means element is absent
-   cout << "Height is--: " << b1.height() << endl;
+    cout << "searching for 7--" << endl;
+    cout << b1.search(7) << endl; // 1 means element is present and 0 means element is absent
+    cout << "Height is--: " << b1.height() << endl;
 
-return 0;
+    return 0;
 }
