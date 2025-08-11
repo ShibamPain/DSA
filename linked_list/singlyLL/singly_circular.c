@@ -9,18 +9,28 @@ typedef struct Node
 } node;
 
 node *head = NULL, *tail = NULL;
+int nodecount = 0;
+
 void inrt_at_begin(int);
 node *makenode(int);
 void display();
-void delete(node *);
+void deletefromfirst(node *); // recursively delete from 1st node
+void inrt_at_last(int);
+void inrt_anyposition(int, int);
+void deletefromlast(); // recursively delete from last
+void deleteLast();     // delete only the last node
+void deleteFirst();    // delete only the first node
+void deleteanyposition(int);
 
 int main()
 {
-    for (int i = 1; i <= 10; i++)
-        inrt_at_begin(i);
-
+    for (int i = 1; i <= 2; i++)
+        inrt_at_last(i);
+    // inrt_anyposition(17, 2); // this function insert the newnode at 3rd node not at 3rd index this is little bit user friendly;
     display();
-    delete(head);
+    deleteLast();
+    deleteLast();
+    printf("\n");
     display();
 
     return 0;
@@ -29,7 +39,7 @@ int main()
 void inrt_at_begin(int data)
 {
     node *newnode = makenode(data);
-
+    nodecount++;
     // NOW I HAVE TO INSERT THIS NODE AT THE BEGGINING BUT THIS IS CIRCULAR
     if (!head)
     {
@@ -41,6 +51,49 @@ void inrt_at_begin(int data)
         head = newnode;
     }
     tail->nxt = newnode;
+}
+void inrt_at_last(int data)
+{
+    node *newnode = makenode(data);
+    if (!newnode)
+    {
+        printf("memory allocation failed.");
+        exit(1);
+    }
+    nodecount++;
+    if (!head)
+        tail->nxt = head = tail = newnode;
+    else
+    {
+        newnode->nxt = head;
+        tail->nxt = newnode;
+        tail = newnode;
+    }
+}
+void inrt_anyposition(int data, int position)
+{
+    if (position < 0 || position > nodecount)
+        printf("node insertion is not possible ...");
+    else if (position == 0)
+        inrt_at_begin(data);
+    else if (position == nodecount)
+        inrt_at_last(data);
+    else
+    {
+        node *temp = head;
+        for (int i = 0; i < position - 2; i++)
+            temp = temp->nxt;
+
+        node *newnode = makenode(data);
+        if (!newnode)
+        {
+            printf("memory allocation failed");
+            exit(1);
+        }
+        nodecount++;
+        newnode->nxt = temp->nxt;
+        temp->nxt = newnode;
+    }
 }
 
 void display()
@@ -58,7 +111,7 @@ void display()
         printf("%d", temp->data);
     }
 }
-void delete(node *curr) // delete(head)
+void deletefromfirst(node *curr) // delete(head)
 {
     if (curr == NULL) // BASE CONDITION..:)
         return;
@@ -67,7 +120,7 @@ void delete(node *curr) // delete(head)
         free(head);
         head = tail = NULL;
     }
-    while (head != tail)
+    if (head != tail)
     {
         node *current = curr; // current = head = address od 1st node
 
@@ -76,8 +129,82 @@ void delete(node *curr) // delete(head)
         free(current); // free the 1st node
         head = address_of_next_node;
         tail->nxt = address_of_next_node;
-        delete(address_of_next_node);
+        deletefromfirst(address_of_next_node);
     }
+    nodecount = 0;
+}
+
+void deleteFirst()
+{
+    if (!head)
+    {
+        printf("deletion can't be possible..");
+        return;
+    }
+    if (head == tail)
+    {
+        free(head);
+        nodecount--;
+        head = tail = NULL;
+    }
+    if (head != tail)
+    {
+        node *nxtnode = head->nxt;
+        free(head);
+        nodecount--;
+        head = tail->nxt = nxtnode;
+    }
+}
+void deleteLast()
+{
+    if (!head)
+        return;
+    node *temp = head;
+
+    while (temp->nxt->nxt != head)
+        temp = temp->nxt;
+    if (head == tail)
+    {
+        free(temp);
+        nodecount--;
+        head = tail = NULL;
+    }
+    else
+    {
+        free(temp->nxt);
+        nodecount--;
+        temp->nxt = head;
+        tail = temp;
+    }
+}
+void deletefromlast()
+{
+    if (!head)
+        return;
+    node *temp = head;
+
+    while (temp->nxt->nxt != head)
+        temp = temp->nxt;
+    if (head == tail)
+    {
+        free(temp->nxt);
+        head = tail = NULL;
+    }
+    else
+    {
+        free(temp->nxt);
+        nodecount--;
+        temp->nxt = head;
+        tail = temp;
+    }
+    while (head)
+        deletefromlast();
+
+    nodecount = 0;
+}
+void deleteanyposition(int position)
+{
+    // if(position<0||position>nodecount)
 }
 // MAKING NEW NODE
 

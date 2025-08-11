@@ -17,11 +17,11 @@ void inrt_at_begin(int);
 void inrt_at_last(int);
 void inrt_at_anyposition(int, int);
 void display();
-void deleteLast();           // THIS DELETE ONLY THE LAST NODE
-void deletefirst();          // THIS DELETE ONLY THE 1ST NODE
-void deletefromfirst(node *);      // THIS DELETE WHOLE LIST AND THE DELETETION START FROM 1ST NODE
-void deletefromlast();       // THIS DELETE THE WHOLE LIST AND THE DELETION START FROM THE LAST NODE
-void deleteanyposition(int); // THIS DELETE THE NODE OF ANY SPECIFIC POSITION
+void deleteLast();            // THIS DELETE ONLY THE LAST NODE
+void deletefirst();           // THIS DELETE ONLY THE 1ST NODE
+void deletefromfirst(node *); // THIS DELETE WHOLE LIST AND THE DELETETION START FROM 1ST NODE
+void deletefromlast();        // THIS DELETE THE WHOLE LIST AND THE DELETION START FROM THE LAST NODE
+void deleteanyposition(int);  // THIS DELETE THE NODE OF ANY SPECIFIC POSITION
 int main()
 {
     for (int i = 1; i <= 10; i++)
@@ -29,7 +29,7 @@ int main()
     inrt_at_anyposition(17, 3); // THIS INSERT THE 17 IN 3RD INDEX NOT IN 3RD POSITION
 
     display();
-    deletefromfirst(head);
+    deletefromlast();
     printf("\n");
     display();
 
@@ -170,6 +170,8 @@ void deletefromfirst(node *ptr)
     free(curr);
     head = nxtnode;
     deletefromfirst(nxtnode);
+    tail = NULL;
+    nodecount = 0;
 }
 
 void deletefromlast()
@@ -194,6 +196,8 @@ void deletefromlast()
     }
     while (head)
         deletefromlast();
+    tail = NULL;
+    nodecount = 0;
 }
 
 void deleteanyposition(int position)
