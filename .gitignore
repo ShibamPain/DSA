@@ -1,3 +1,6 @@
 *.out
 *.exe
+*.vscode
+*.md
+*.gitignore
 linked_list/inrt_at_last.exe
