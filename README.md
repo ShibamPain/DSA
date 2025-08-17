@@ -8,6 +8,9 @@
   <li>Recursion</li>
   <li>Linked list</li>
   <li>Stack</li>
+  <li>Queue</li>
+  <li>Tree</li>
+  <li></li>
 <hr />
 <hr />
 </ol></p>
