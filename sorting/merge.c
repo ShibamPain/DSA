@@ -38,6 +38,7 @@ void merge(int *left, int nL, int *right, int nR, int *arr, int n)
             arr[k] = left[i++];
         else
             arr[k] = right[j++];
+            
         k++;
     }
     while (i < nL)// collect the left over elements of left subarray
