@@ -10,7 +10,7 @@
   <li>Stack</li>
   <li>Queue</li>
   <li>Tree</li>
-  <li></li>
+  <li>Graph</li>
 <hr />
 <hr />
 </ol></p>
